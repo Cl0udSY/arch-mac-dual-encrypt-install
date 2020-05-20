@@ -4,7 +4,7 @@
 # Before installing, do the patitionning in macOS
 # Create two partitions beside your macOS partition:
 #	- boot --> 280Mb
-#	- linux --> all the rest
+#	- linux --> all the space left
 
 ##############################
 #### Step for ISO install ####
@@ -31,7 +31,7 @@
 ### Encryption: https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LUKS_on_a_partition
 ##############
 
-# All partitionning had already been done in macOS
+# All partitionning has already been done in macOS
 
 # Format and encrypt the non-boot partition
 # cryptsetup -y -v luksFormat /dev/<partition>
