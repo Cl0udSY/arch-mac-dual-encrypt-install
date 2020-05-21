@@ -1,0 +1,3 @@
+checkupdates --> Check avalaible updates
+pacman -Syy --> Update
+pacman -Syu --> Upgrade (check archlinux.org main page before)

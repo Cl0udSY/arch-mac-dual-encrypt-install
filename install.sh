@@ -110,3 +110,45 @@
 # Then reboot the system, hold Option and choose EFI --> Select Arch
 
 ##############################
+
+############################################
+#### Userland install and configuration ####
+############################################
+
+# This part must be launched with the root account
+# after the OS Installation
+
+# Setup WiFi Network
+
+modprobe brcmfmac
+sed -i -e 's/blacklist brcmfmac/#blacklist brcmfmac'
+
+read -p "Enter your Wireless Interface: " wint
+ip link set $wint up
+echo -e "ctrl_interface=/run/wpa_supplicant\nupdate_config=1" > /etc/wpa_supplicant/wpa_supplicant.conf
+
+read -p "Enter the SSID: " ssid
+read -ps "Enter the passphrase: " passphrase
+wpa_passphrase $ssid $passphrase >> /etc/wpa_supplicant/wpa_supplicant.conf
+
+killall wpa_supplicant && wpa_supplicant -B -i $wint -c /etc/wpa_supplicant/wpa_supplicant.conf
+dhclient
+
+# Update the system
+pacman -Syy
+pacman -Syu
+
+# Install zsh
+pacman -S zsh
+
+# install Xorg
+
+
+
+# Create new user and add to Sudo group
+
+
+
+
+
+
