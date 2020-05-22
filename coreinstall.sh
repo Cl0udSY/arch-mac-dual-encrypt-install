@@ -141,14 +141,37 @@ pacman -Syu
 # Install zsh
 pacman -S zsh
 
-# install Xorg
+# Install Xorg for intel card + 3D accel libs and compat for 32bits
+# If want to check your card: lspci | grep -e VGA -e 3D
+sed -i '/#\[multilib\]/{n;s/#Include/Include/}' test.conf # Add Multilib mirrors
+pacman -Sy # Update to download multilibs
+pacman -S mesa lib32-mesa
+#pacman -S xf86-video-intel mesa lib32-mesa --> Installing Xorg
 
+# Install Wayland
+# Check with pacman -Ss wayland if in extra packages, wayland is already installed
+pacman -S wayland
 
+# Install GNOME
+pacman -S gnome gnome-tweaks
+systemctl enable gdm.service # Start Gnome at boot
+
+# Start NetworkManager at boot
+systemctl enable NetworkManager
+
+# Create sudo group
+sed -i 's/# %sudo/%sudo/' /etc/sudoers
+groupadd sudo
 
 # Create new user and add to Sudo group
+read -p "Your username: " username
+useradd -Um -s /usr/bin/zsh $username
+passwd $username
+usermod -aG sudo $username
 
-
-
-
-
-
+echo "Core configuration is done !"
+read -p "Do you want to shutdown for restart ? [y|n]: " userchoice
+if [ "$userchoice" == "y" ]
+then
+	shutdown now
+fi
