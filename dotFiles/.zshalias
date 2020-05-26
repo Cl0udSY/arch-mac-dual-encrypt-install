@@ -1,0 +1,38 @@
+# Alias
+
+alias l="ls -lFh"
+alias la="ls -alFh"
+alias rmd="rm -rf"
+alias cpd="cp -r"
+alias da="cat $HOME/.zshalias"
+alias killdiscord='ps aux | grep discord | cut -d" " -f7 | xargs kill -9'
+alias shutdown="systemctl poweroff"
+alias xclipt="xclip -selection clipboard"
+alias rootme="cd $HOME/Security/Challs/RootMe/"
+function clip()
+{
+	cat $1 | xclip
+}
+
+# Alias sudo apt
+alias apt="sudo apt"
+
+# Alias tools
+alias vsc="codium --user-data-dir '$HOME/VSC'"
+alias open="xdg-open"
+
+# Alias tools secu
+alias dtl="ls -lFh $HOME/Security/Tools/appLinks"
+alias decpy="uncompyle6"
+alias ran="rabin2 -I"
+function cutter()
+{
+	(Cutter $1 &) &> ./cutter.log
+}
+
+# Alias documents
+alias isl="ls -lFh $HOME/Security/Documents/InstructionsSets/"
+function is()
+{
+	xdg-open "$HOME/Security/Documents/InstructionsSets/${1}_InstructionSet.pdf"
+}
