@@ -19,7 +19,7 @@ alias apt="sudo apt"
 
 # Alias tools
 alias vsc="codium --user-data-dir '$HOME/VSC'"
-alias open="xdg-open"
+alias open="gio"
 
 # Alias tools secu
 alias dtl="ls -lFh $HOME/Security/Tools/appLinks"
@@ -34,5 +34,5 @@ function cutter()
 alias isl="ls -lFh $HOME/Security/Documents/InstructionsSets/"
 function is()
 {
-	xdg-open "$HOME/Security/Documents/InstructionsSets/${1}_InstructionSet.pdf"
+	gio "$HOME/Security/Documents/InstructionsSets/${1}_InstructionSet.pdf"
 }

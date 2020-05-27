@@ -13,7 +13,7 @@ function installFirefoxDev()
 	ln -s $firefoxDir/firefox $localBin
 }
 
-function installRadare2()
+function installRadare2Cutter()
 {
 	git clone https://github.com/radareorg/radare2
 	cd radare2
@@ -24,6 +24,12 @@ function installRadare2()
 	mv cutter* $localBin
 
 }
+
+# Configure Git
+git config --global core.editor "vim"
+git config --global pull.request true
+read -p "Username for git: " gituser
+git config --global user.name "$gituser"
 
 # Install Alsa for Sound (check if pulseaudio needed)
 pacman -S alsa-utils # Kernel Sound Driver
@@ -47,24 +53,32 @@ cp ./conf/dconf/user ~/.config/dconf/
 # Configure tweaks --> TODO for extensions check gnome-shell-extensions-installer
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
-#####
-# Install softwares
-#####
 mkdir $localBin
 mkdir $tempSoft
 cd $tempSoft
 
-installFirefoxDev
-pacman -S xfce4-terminal
-pacman -S android-tools android-udev
-
-git clone https://aur.archlinux.org/scrcpy.git
-cd scrcpy
+#####
+# Install Basic softwares
+#####
+git clone https://aur.archlinux.org/trizen.git
+cd trizen
 makepkg -si
 cd ..
-rm -rf scrcpy
+rm -rf trizen
 
-installRadare2
+installFirefoxDev
+
+pacman -S xfce4-terminal
+pacman -S android-tools android-udev
+trizen -S scrcpy
+
+pacman -S tree
+pacman -S imagemagick
+
+#####
+# Install Security Softwares
+#####
+installRadare2Cutter
 pacman -S aircrack-ng
 
 #####

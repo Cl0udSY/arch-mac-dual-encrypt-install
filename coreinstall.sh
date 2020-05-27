@@ -73,9 +73,9 @@
 # hwclock --systohc
 
 # Set the localization
-# vim /etc/locale.gen --> Uncomment the line fr_FR.UTF-8
+# vim /etc/locale.gen --> Uncomment the line fr_FR.UTF-8, en_US UTF-8
 # locale-gen
-# vim /etc/locale.conf --> Add in this new file the line: LANG=fr_FR.UTF-8
+# vim /etc/locale.conf --> Add in this new file the line: LANG=en_US.UTF-8
 
 # Create hostname file
 # vim /etc/hostname --> Write your hostname
