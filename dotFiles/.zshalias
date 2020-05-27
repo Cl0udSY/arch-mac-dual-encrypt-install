@@ -19,20 +19,20 @@ alias apt="sudo apt"
 
 # Alias tools
 alias vsc="codium --user-data-dir '$HOME/VSC'"
-alias open="gio"
+alias open="gio open"
 
 # Alias tools secu
 alias dtl="ls -lFh $HOME/Security/Tools/appLinks"
 alias decpy="uncompyle6"
 alias ran="rabin2 -I"
-function cutter()
-{
-	(Cutter $1 &) &> ./cutter.log
-}
+#function cutter()
+#{
+#	(Cutter $1 &) &> ./cutter.log
+#}
 
 # Alias documents
 alias isl="ls -lFh $HOME/Security/Documents/InstructionsSets/"
 function is()
 {
-	gio "$HOME/Security/Documents/InstructionsSets/${1}_InstructionSet.pdf"
+	gio open "$HOME/Security/Documents/InstructionsSets/${1}_InstructionSet.pdf"
 }

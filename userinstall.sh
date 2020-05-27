@@ -66,6 +66,8 @@ makepkg -si
 cd ..
 rm -rf trizen
 
+pacman -S jdk-openjdk
+
 installFirefoxDev
 
 pacman -S xfce4-terminal
