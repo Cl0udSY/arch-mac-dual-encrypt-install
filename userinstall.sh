@@ -28,7 +28,12 @@ function installRadare2()
 # Install Alsa for Sound (check if pulseaudio needed)
 pacman -S alsa-utils # Kernel Sound Driver
 
+# Install Bluetooth
+pacman -S bluez bluez-utils pulseaudio-bluetooth
+systemctl enable bluetooth
+
 # Install Oh My ZSH
+pacman -R grml-zsh-config powerline-fonts
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Put all home's . conf file in home
