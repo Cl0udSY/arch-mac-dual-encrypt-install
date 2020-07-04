@@ -13,9 +13,10 @@ function clip()
 {
 	cat $1 | xclip
 }
+alias enbrcm="sed -i -e 's/blacklist brcmfmac/#blacklist brcmfmac' /usr/lib/modprobe.d/broadcom-wl.conf"
 
-# Alias sudo apt
-alias apt="sudo apt"
+# Alias sudo pacman
+alias pacman="sudo pacman"
 
 # Alias tools
 alias vsc="codium --user-data-dir '$HOME/VSC'"

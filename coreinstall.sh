@@ -121,7 +121,7 @@
 # Setup WiFi Network
 
 modprobe brcmfmac
-sed -i -e 's/blacklist brcmfmac/#blacklist brcmfmac'
+sed -i -e 's/blacklist brcmfmac/#blacklist brcmfmac' /usr/lib/modprobe.d/broadcom-wl.conf
 
 read -p "Enter your Wireless Interface: " wint
 ip link set $wint up

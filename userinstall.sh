@@ -82,5 +82,8 @@ pacman -S imagemagick
 #####
 installRadare2Cutter
 pacman -S aircrack-ng
+pacman -S gdb
+trizen -S burpsuite
+pacman -S upx
 
 #####
