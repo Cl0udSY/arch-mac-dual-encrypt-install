@@ -74,8 +74,11 @@ pacman -S xfce4-terminal
 pacman -S android-tools android-udev
 trizen -S scrcpy
 
+pacman -S wmctrl
+pacman -S zenity
 pacman -S tree
 pacman -S imagemagick
+pacman -S gparted
 
 #####
 # Install Security Softwares
