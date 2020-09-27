@@ -1,5 +1,6 @@
 # Alias
 
+alias edal="vim ~/.zshalias && source ~/.zshalias" # Edit alias file
 alias l="ls -lFh"
 alias la="ls -alFh"
 alias rmd="rm -rf"
@@ -14,6 +15,10 @@ function clip()
 	cat $1 | xclip
 }
 alias enbrcm="sed -i -e 's/blacklist brcmfmac/#blacklist brcmfmac' /usr/lib/modprobe.d/broadcom-wl.conf"
+
+# Systemctl alias
+alias startdocker="sudo systemctl start docker"
+alias stopdocker="sudo systemctl stop docker"
 
 # Alias sudo pacman
 alias pacman="sudo pacman"
@@ -37,3 +42,17 @@ function is()
 {
 	gio open "$HOME/Security/Documents/InstructionsSets/${1}_InstructionSet.pdf"
 }
+
+# Alias kb-manager
+alias kbl="kb list"
+alias kbe="kb edit --id"
+alias kbu="kb update --id"
+alias kba="kb add"
+alias kbv="kb view -e --id"
+alias kbvf="kb view --id"
+alias kbvne="kb view --id"
+alias kbd="kb delete --id"
+alias kbg="kb grep"
+alias kbt="kb list --tags"
+alias kbimp="kb import"
+alias kbexp="kb export -f"
