@@ -1,11 +1,11 @@
-# Alias
+# Common alias
 
-alias edal="vim ~/.zshalias && source ~/.zshalias" # Edit alias file
+alias edal="vim ~/.config/zshconfig/zshalias && source ~/.config/zshconfig/zshalias" # Edit alias file
 alias l="ls -lFh"
 alias la="ls -alFh"
 alias rmd="rm -rf"
 alias cpd="cp -r"
-alias da="cat $HOME/.zshalias"
+alias da="cat $HOME/.config/zshconfig/zshalias"
 alias killdiscord='ps aux | grep discord | cut -d" " -f7 | xargs kill -9'
 alias shutdown="systemctl poweroff"
 alias xclipt="xclip -selection clipboard"
@@ -14,20 +14,40 @@ function clip()
 {
 	cat $1 | xclip
 }
-alias enbrcm="sed -i -e 's/blacklist brcmfmac/#blacklist brcmfmac' /usr/lib/modprobe.d/broadcom-wl.conf"
+alias enbrcm="sudo sed -i -e 's/blacklist brcmfmac/#blacklist brcmfmac/' /usr/lib/modprobe.d/broadcom-wl.conf && sudo modprobe brcmfmac"
+
+# Python alias
+alias py="python3"
+alias pyc="python3 -c"
 
 # Systemctl alias
 alias startdocker="sudo systemctl start docker"
 alias stopdocker="sudo systemctl stop docker"
 
-# Alias sudo pacman
+# Sudo pacman alias
 alias pacman="sudo pacman"
 
-# Alias tools
+# Tools alias
 alias vsc="codium --user-data-dir '$HOME/VSC'"
 alias open="gio open"
+function vim()
+{
+	VIM_PATH=$(type -p vim | cut -d" " -f3)
+	if (($# == 0));
+	then
+		$VIM_PATH .
+	else
+		$VIM_PATH "$@"
+	fi
+}
+function viman()
+{
+	mantext=$(man "$@") && echo "$mantext" | vim -R +":set ft=man" -;
+}
 
-# Alias tools secu
+alias cdcd="coredumpctl debug"
+
+# Secu tools alias
 alias dtl="ls -lFh $HOME/Security/Tools/appLinks"
 alias decpy="uncompyle6"
 alias ran="rabin2 -I"
@@ -36,14 +56,14 @@ alias ran="rabin2 -I"
 #	(Cutter $1 &) &> ./cutter.log
 #}
 
-# Alias documents
+# Documents alias
 alias isl="ls -lFh $HOME/Security/Documents/InstructionsSets/"
 function is()
 {
 	gio open "$HOME/Security/Documents/InstructionsSets/${1}_InstructionSet.pdf"
 }
 
-# Alias kb-manager
+# Kb-manager alias
 alias kbl="kb list"
 alias kbe="kb edit --id"
 alias kbu="kb update --id"

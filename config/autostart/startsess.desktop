@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=startsess
+Comment=Starting script to choose what session you want to open
+Exec=/home/dagon/.config/startupScript/startsess firefoxdev
+Terminal=false
+Type=Application
+X-GNOME-Autostart-enabled=true

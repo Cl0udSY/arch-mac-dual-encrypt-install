@@ -1,6 +1,7 @@
 # For tui
-layout asm
-layout reg
+#layout asm
+#layout reg
+#focus cmd
 
 # Functions
 define setldp

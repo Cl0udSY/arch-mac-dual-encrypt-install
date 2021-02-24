@@ -1,0 +1,82 @@
+#!/bin/bash
+
+# Script written by:
+# Cl0udSY <cloudonsky@protonmail.com>
+
+# Zenity is for shell dialog box
+# wmctrl is for workspace management (wmctrl -s --> Move to new workspace)
+# (wmctrl -r <app> -t <wkspace> --> Move an open app to workspace)
+
+# Variables
+bin="/usr/bin"
+localBin="$HOME/.local/bin"
+
+# Zeniy config
+windowWidth=300 
+windowHeight=150
+
+boxWindowWidth=400
+boxWindowHeight=300
+
+# Sleep time
+firefoxSleep=2
+termSleep=2
+
+# Argument: firefoxdev exec name
+if [ $# -eq 1 ]
+then
+	firefox=$1
+else
+	echo "Exiting because there isn't enough arguments"
+	exit 1
+fi
+
+#zenity --width=$windowWidth --height=$windowHeight --info --title="Waiting..." --text="Don't click on OK button...\nWaiting for X to start" --no-wrap &
+#sleep 10
+#killall zenity
+
+choiceUser=$(zenity --width=$boxWindowWidth --height=$boxWindowHeight --list --radiolist --title="Start session" --text="What session do you want to open ?" --column="" --column="Choice" "" "Chall" "" "CTF" "" "Normal")
+
+#if $(zenity --question --title="Start Session" --text="Do you want to start an Hk session ?")
+if [ $choiceUser = "Chall" ]
+then
+	$bin/wmctrl -s 0
+	$localBin/$firefox &
+	sleep $firefoxSleep
+
+	$bin/wmctrl -s 1
+	$bin/xfce4-terminal --maximize --working-directory="$HOME/Security/Challs/RootMe/" & 
+	sleep $termSleep
+
+	$bin/wmctrl -s 2
+	$bin/discord &
+
+elif [ $choiceUser = "CTF" ]
+then
+	ctfName=$(zenity --width=$windowWidth --height=$windowHeight --entry --title="CTF Name" --text="Enter the CTF name:")
+	url=$(zenity --width=$windowWidth --height=$windowHeight --entry --title="CTF Website URL" --text="Enter the CTF plateform URL:")
+	$bin/wmctrl -s 0
+	$localBin/$firefox &
+	sleep $firefoxSleep
+
+	if [ $url ]
+	then
+		$localBin/$firefox --new-window $url
+	else
+		$localBin/$firefox --new-window
+	fi
+
+	$bin/wmctrl -s 1
+	$bin/mkdir "$HOME/Security/CTFs/$ctfName"
+	$bin/gnome-terminal --maximize --working-directory="$HOME/Security/Challs/CTFs/$ctfName" &
+	sleep $termSleep
+
+	$bin/wmctrl -s 2
+	$bin/discord &
+
+elif [ $choiceUser = "Normal" ]
+then
+	pass
+fi
+
+zenity --timeout=5 --width=300 --height=150 --info --title="Finished !" --text="Session is now opened !"
